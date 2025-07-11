@@ -1,5 +1,3 @@
-// src/pages/Careers.jsx
-import React, { useState } from 'react';
 import { useLanguage } from './LanguageContext';
 import { translations } from './translations';
 import lady from './assets/lady.svg'; 
