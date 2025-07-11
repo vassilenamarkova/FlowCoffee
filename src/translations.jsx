@@ -10,7 +10,7 @@ const rawTranslations = {
     order: 'order now',
     more: 'More than coffee, Flow is about simple moments done right.\nFeel it yourself',
     map: 'Sofia Center, Budapeshta Street 26, 1202 Sofia',
-    rights: '© 2025 FLOW COFFEE. All rights reserved.',
+    rights: '© 2025 FLOW COFFEE. All rights reserved to Vassilena Markova.',
     hiring: "WE'RE HIRING",
     heroText: `
       <p style={{ marginBottom: '2.3rem' }}>
@@ -43,7 +43,7 @@ const rawTranslations = {
     welcome: 'Добре дошли във FLOW COFFEE — елате за кафето, останете за момента.',
     order: 'поръчай сега',
     more: 'Повече от кафе – Flow е за онези прости моменти, направени правилно. Усетете го сами.',
-    rights: '© 2025 FLOW COFFEE. Всички права запазени.',
+    rights: '© 2025 FLOW COFFEE. Всички права запазени на Василена Маркова.',
     map: 'Център София, ул. Будапеща 26, 1202 София',
     hiring: "ТЪРСИМ ПЕРСОНАЛ",
     heroText: `

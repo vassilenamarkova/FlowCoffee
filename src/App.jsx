@@ -14,7 +14,7 @@ import Map from './map'; // adjust path as needed
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Careers from './careers';
-import ScrollToTop from './ScrollToTop';
+import ScrollToTop from './scrollToTop';
 import { useLanguage } from './LanguageContext';
 import { translations } from './translations';
 
