@@ -279,23 +279,7 @@ const Home = () => {
             letterSpacing: '0.1rem',
             lineHeight: '1.4'
           }}>
-            <p style={{ marginBottom: '2.3rem' }}>
-              At <span style={{ fontWeight: 'bold' }}>Flow Coffee Sofia</span>, we believe that <span style={{ fontWeight: 'bold' }}>great coffee</span> is more than just
-              a drink — it's a daily ritual, a pause, a moment to slow down and
-              let life flow. Nestled in the <span style={{ fontWeight: 'bold' }}>heart of Sofia</span>, our space is designed for 
-              calm conversations, focused work, and quiet escapes from the city rush.
-            </p>
-
-            <p>
-              Every bag we roast tells a story — from the lush highlands of
-              <span style={{ fontWeight: 'bold' }}> Ethiopia</span> to the rich volcanic soils of
-              <span style={{ fontWeight: 'bold' }}> Colombia</span>,
-              <span style={{ fontWeight: 'bold' }}> Indonesia</span>, and
-              <span style={{ fontWeight: 'bold' }}> El Salvador</span>. We carefully
-              <span style={{ fontWeight: 'bold' }}> select</span> single-origin beans from responsible
-              farms around the world, each bringing its own unique flavor
-              profile, terroir, and character to <span style={{ fontWeight: 'bold' }}>your cup</span>.
-            </p>
+            {t.heroText}
           </div>
 
           <div style={{
@@ -315,7 +299,7 @@ const Home = () => {
             letterSpacing: '0.2em',    // More space between letters
             lineHeight: '1.1'
           }}>
-            More than coffee, Flow is about simple moments done right. <br />Feel it yourself
+            {t.more}
           </div>
 
           {/*SLIDESHOW */}
@@ -402,12 +386,7 @@ const Home = () => {
           textAlign: 'center',
           lineHeight: '0.9'
         }}>
-          <p style={{ marginBottom: '2.3rem' }}>
-            Monday - Friday <br /> 8am - 7pm
-          </p>
-          <p>
-            Saturday - Sunday <br /> 9am - 7pm
-          </p>
+          {t.time}
         </div>
 
         {/* SVG Icons */}

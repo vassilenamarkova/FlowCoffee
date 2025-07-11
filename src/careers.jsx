@@ -85,18 +85,7 @@ const Careers = () => {
             lineHeight: '0.9',
             letterSpacing: '0.1rem'
           }}>
-              <p style={{ marginBottom: '2rem', fontWeight: '300'}}>
-                We’re looking for someone to join our team as a <strong>barista</strong>. If <br/>you can see yourself behind our bar, reach out. 
-                The position <br/>is shift-based and paid by the hour. <br/>
-              </p>
-
-              <p style={{ marginBottom: '3rem', fontWeight: '200' }}>
-                We’re looking for a responsible, positive person, always <br/> up for a challenge. <br/>
-              </p>
-
-              <p style={{ fontStyle: 'italic', fontWeight: '100', transform: 'skew(-5deg, 0deg)', textAlign: 'right', }}>
-                  No experience? No problem — we'll teach you. <br/>
-              </p>
+              {t.careerText}
                           
           </div>
 
