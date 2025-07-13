@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slideshow from './Slideshow';
 import InfiniteCarousel from './Carrusel';
-import StickyNavigation from './StickyNav';
+import MobileNavigation from './mobileNavigation'; // Import the new component
 import { LanguageProvider } from './LanguageContext';
 import Map from './map';
 import { useState, useEffect } from 'react';
@@ -48,7 +48,7 @@ const Home = () => {
         landing marker
       </div>
 
-      {/* Main content container - keep original for desktop */}
+      {/* Main content container - add top margin for mobile to account for fixed header */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -61,7 +61,7 @@ const Home = () => {
           flexDirection: 'column',
           alignItems: 'center',
           gap: '1rem',
-          marginTop: '1rem',
+          marginTop: '80px', // Add margin for mobile fixed header
           padding: '0.5rem',
           minHeight: '60vh'
         })
@@ -476,15 +476,14 @@ const Home = () => {
       }}>
         
         {/* Instagram Feed - Improved responsive version */}
-        {/* Instagram Feed - Desktop original, mobile responsive */}
         <div style={{ 
           position: 'absolute',
           top: '7px',
           left: '55.7%',
           transform: 'translateY(-7rem)',
-          width: `${800 * 0.70}px`, // Scaled width
-          height: `${646 * 0.70}px`, // Scaled height
-          overflow: 'hidden', // 🚀 Clip anything outside bounds
+          width: `${800 * 0.70}px`,
+          height: `${646 * 0.70}px`,
+          overflow: 'hidden',
           zIndex: 101,
           pointerEvents: 'auto',
           ...(isMobile && {
@@ -492,8 +491,8 @@ const Home = () => {
             left: '50%',
             transform: 'translateX(-50%)',
             width: '95%',
-            height: `${646 * 0.5}px`, // Proportional height for mobile
-            maxWidth: '400px' // Prevent it from getting too wide
+            height: `${646 * 0.5}px`,
+            maxWidth: '400px'
           })
         }}>
           <iframe
@@ -685,7 +684,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <StickyNavigation
+              <MobileNavigation
                 logo={reactLogo} 
                 scrolledLogo={scrolledLogo}
               />
@@ -694,7 +693,7 @@ function App() {
           } />
           <Route path="/careers" element={
             <>
-              <StickyNavigation
+              <MobileNavigation
                 logo={scrolledLogo} 
                 scrolledLogo={scrolledLogo}
                 customLogoHeight="50px"
