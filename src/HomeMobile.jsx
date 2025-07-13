@@ -1,26 +1,11 @@
-import reactLogo from './assets/flowLogo.svg';
-import scrolledLogo from './assets/flowLogoSmall.svg'; 
-import './App.css';
+import { useState, useEffect } from 'react';
 import ModelViewer from './ModelViewer';
-import ScrollArrow from './arrow';
-import MyImage from './assets/flowbrownie.jpg';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slideshow from './Slideshow';
 import InfiniteCarousel from './Carrusel';
-import StickyNavigation from './StickyNav';
-import { LanguageProvider } from './LanguageContext';
-import Map from './map';
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Careers from './careers';
-import ScrollToTop from './scrollToTop';
 import { useLanguage } from './LanguageContext';
 import { translations } from './translations';
-import HomeMobile from './HomeMobile';
 
-// Desktop Home component
-const HomeDesktop = () => {
+const HomeMobile = () => {
   const [isHovered, setIsHovered] = useState(false);
   const { language } = useLanguage();
   const t = translations[language];
@@ -38,30 +23,32 @@ const HomeDesktop = () => {
         landing marker
       </div>
 
-      {/* Main content container - Desktop */}
+      {/* Main content container - Mobile optimized */}
       <div style={{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: '2rem',
-        marginTop: '1.7rem',
-        padding: '1rem',
-        minHeight: '80vh'
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '1rem',
+        marginTop: '1rem',
+        padding: '0.5rem',
+        minHeight: '60vh'
       }}>
         
-        {/* 3D Model on Left - Desktop */}
+        {/* 3D Model Section - Mobile optimized */}
         <div style={{
-          flex: '0 0 290px',
-          height: '250px',
+          flex: '1 1 auto',
+          height: '200px',
+          width: '100%',
+          maxWidth: '300px',
           position: 'relative'
         }}>
-          {/* Background text - Desktop */}
+          {/* Background text - Mobile optimized */}
           <div style={{
             position: 'absolute',
             top: '50%',
-            left: '55%',
+            left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: '12rem',
+            fontSize: '4rem',
             fontWeight: 'bold',
             color: 'rgba(0, 0, 160, 0.25)',
             zIndex: -1,
@@ -72,13 +59,13 @@ const HomeDesktop = () => {
             FLOW COFFEE
           </div>
 
-          {/* Second background text - Desktop */}
+          {/* Second background text - Mobile optimized */}
           <div style={{
             position: 'absolute',
-            top: 'calc(45% + 11rem)',
-            left: '55%',
+            top: 'calc(50% + 4rem)',
+            left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: '12rem',
+            fontSize: '4rem',
             fontWeight: 'bold',
             color: 'rgba(0, 0, 160, 0.25)',
             zIndex: -1,
@@ -98,23 +85,26 @@ const HomeDesktop = () => {
           }} />
         </div>
 
-        {/* Text content on Right - Desktop */}
+        {/* Text content - Mobile optimized */}
         <div style={{ 
           flex: '1',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start'
+          alignItems: 'center'
         }}>
           
         </div>
       </div>
 
-      {/* Where Good Coffee - Desktop */}
+      {/* Where Good Coffee - Mobile optimized */}
       <div style={{
         position: 'absolute',
-        bottom: '9%',
-        left: '1.5%',
-        fontSize: '1rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        fontSize: '0.9rem',
+        bottom: '12%',
+        textAlign: 'center',
+        width: '90%',
         color: '#0000A0',
         fontWeight: 'Bold',
         fontFamily: 'Inria Sans',
@@ -123,25 +113,25 @@ const HomeDesktop = () => {
         Where Good Coffee & Good Energy FLOW
       </div>
 
-      {/* Welcome to FLOW - Desktop */}
+      {/* Welcome to FLOW - Mobile optimized */}
       <div style={{
         position: 'absolute',
-        bottom: '4%',
-        left: '1.5%',
-        fontSize: '1rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        fontSize: '0.9rem',
+        bottom: '6%',
+        textAlign: 'center',
+        width: '90%',
         color: '#0000A0',
         fontWeight: '300',
         fontFamily: 'Inria Sans',
-        fontStyle: 'italic', 
-        zIndex: 100,
-        width: '25%',
-        textAlign: 'left',
-        lineHeight: '0.9'
+        fontStyle: 'italic',
+        zIndex: 100
       }}>
         {t.welcome}
       </div>
 
-      {/* BANNER - Desktop */}
+      {/* BANNER - Mobile optimized */}
       <div style={{
         position: 'relative',
         left: '50%',
@@ -150,7 +140,7 @@ const HomeDesktop = () => {
         marginRight: '-50vw',
         marginTop: '0.5vw',
         width: '100vw',
-        height: '70vh',
+        height: '50vh',
         overflow: 'hidden'
       }}>
         <img 
@@ -165,15 +155,16 @@ const HomeDesktop = () => {
           }}
         />
 
-        {/* Order button - Desktop */}
+        {/* Order button - Mobile optimized */}
         <a 
           href="https://www.takeaway.com/bg-en/menu/flow-coffee-and-pastrykafe-i-peciva-flou" 
           target="_blank" 
           rel="noopener noreferrer"
           style={{
             position: 'absolute',
-            top: '80%',
-            left: '2.5%',
+            top: '70%',
+            left: '50%',
+            transform: 'translateX(-50%)',
             zIndex: 9999,
             pointerEvents: 'auto'
           }}
@@ -185,12 +176,12 @@ const HomeDesktop = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '5px 20px 10px 20px',
+              padding: '8px 16px 12px 16px',
               border: '2px solid white',
               backgroundColor: isHovered ? 'rgba(252, 252, 252, 0.69)' : 'rgba(255, 255, 255, 0.32)',
               color: isHovered ? 'rgb(255, 255, 255)' : 'white',
               borderRadius: '30px',
-              fontSize: '35px',
+              fontSize: '24px',
               lineHeight: '1',
               cursor: 'pointer',
               transition: 'background-color 0.3s, color 0.3s',
@@ -214,7 +205,7 @@ const HomeDesktop = () => {
         </div>
       </div>
 
-      {/* WHITE ABOUT US SECTION - Desktop */}
+      {/* WHITE ABOUT US SECTION - Mobile optimized */}
       <div style={{
         position: 'relative',
         left: '50%',
@@ -223,8 +214,8 @@ const HomeDesktop = () => {
         marginRight: '-50vw',
         width: '100vw',
         backgroundColor: 'rgba(255, 255, 255, 0.54)',
-        padding: '-100rem',
-        minHeight: '180vh',
+        minHeight: '120vh',
+        padding: '2rem 0',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
@@ -232,13 +223,13 @@ const HomeDesktop = () => {
         marginTop: '0.5rem',
         zIndex: -100
       }}>
-        {/* ABOUT title - Desktop */}
+        {/* ABOUT title - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          top: '88px',
-          left: '69%',
+          fontSize: '4rem',
+          left: '50%',
+          top: '60px',
           transform: 'translate(-50%, -50%)',
-          fontSize: '10rem',
           fontFamily: 'Inria Sans',
           fontWeight: 'bold',
           color: 'rgba(191,171,122,0.74)',
@@ -261,19 +252,20 @@ const HomeDesktop = () => {
           landing marker
         </div>
 
-        {/* Hero text - Desktop */}
+        {/* Hero text - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          top: '340px',
-          left: '69%',
+          fontSize: '0.9rem',
+          left: '50%',
+          top: '200px',
+          width: '90%',
+          padding: '0 1rem',
           transform: 'translate(-50%, -50%)',
-          fontSize: '1.1rem',
           fontFamily: 'Inria Sans',
           color: 'rgb(148, 128, 75)',
           zIndex: -1,
           userSelect: 'none',
           pointerEvents: 'none',
-          width: '700px',
           whiteSpace: 'normal',
           textAlign: 'justify',
           letterSpacing: '0.1rem',
@@ -282,13 +274,13 @@ const HomeDesktop = () => {
           {t.heroText}
         </div>
 
-        {/* "More" text - Desktop */}
+        {/* "More" text - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          top: '830px',
+          fontSize: '1.2rem',
+          top: '600px',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontSize: '1.5rem',
           fontFamily: 'Inria Sans',
           color: 'rgba(0, 0, 160)',
           zIndex: -1,
@@ -306,13 +298,13 @@ const HomeDesktop = () => {
         {/* SLIDESHOW */}
         <Slideshow />
 
-        {/* CONTACTS title - Desktop */}
+        {/* CONTACTS title - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          top: '940px',
-          left: '28%',
+          fontSize: '4rem',
+          left: '50%',
+          top: '720px',
           transform: 'translate(-50%, -50%)',
-          fontSize: '8rem',
           fontFamily: 'Inria Sans',
           fontWeight: 'bold',
           color: 'rgba(157, 190, 139, 0.85)',
@@ -327,7 +319,7 @@ const HomeDesktop = () => {
 
       <InfiniteCarousel/>
 
-      {/* GREEN CONTACTS SECTION - Desktop */}
+      {/* GREEN CONTACTS SECTION - Mobile optimized */}
       <div id="contacts" style={{
         position: 'relative',
         left: '50%',
@@ -336,8 +328,8 @@ const HomeDesktop = () => {
         marginRight: '-50vw',
         width: '100vw',
         backgroundColor: 'rgba(157, 190, 139, 0.85)',
-        padding: '-100rem',
-        minHeight: '63vh',
+        minHeight: '80vh',
+        padding: '2rem 0',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
@@ -346,14 +338,15 @@ const HomeDesktop = () => {
         zIndex: 100
       }}>
         
-        {/* Instagram Feed - Desktop */}
+        {/* Instagram Feed - Mobile optimized */}
         <div style={{ 
           position: 'absolute',
-          top: '7px',
-          left: '55.7%',
-          transform: 'translateY(-7rem)',
-          width: `${800 * 0.70}px`,
-          height: `${646 * 0.70}px`,
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '95%',
+          height: `${646 * 0.5}px`,
+          maxWidth: '400px',
           overflow: 'hidden',
           zIndex: 101,
           pointerEvents: 'auto'
@@ -361,45 +354,47 @@ const HomeDesktop = () => {
           <iframe
             src="https://emb.fouita.com/widget/0x299ba2/ftul0hyub"
             title="Instagram Feed"
-            width='800'
-            height='646'
+            width='100%'
+            height='100%'
             style={{ 
               border: 'none',
-              transform: 'scale(0.73)',
-              transformOrigin: 'top left'
+              width: '100%',
+              height: '100%'
             }}
           />
         </div>
 
-        {/* Hours - Desktop */}
+        {/* Hours - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          bottom: '90px',
-          left: '400px',
-          fontSize: '1.4rem',
+          fontSize: '1.2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          bottom: '200px',
+          width: '90%',
           color: '#FFFF',
           fontWeight: '400',
           fontFamily: 'Inria Sans',
-          fontStyle: 'italic', 
+          fontStyle: 'italic',
           zIndex: 100,
-          width: '300px',
           textAlign: 'center',
           lineHeight: '0.9'
         }}>
           {t.time}
         </div>
 
-        {/* SVG Icons - Desktop */}
+        {/* SVG Icons - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          bottom: '76px',
-          left: '100px',
+          flexDirection: 'row',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          bottom: '50px',
+          gap: '1rem',
           display: 'flex',
           justifyContent: 'center',
-          gap: '2.8rem',
           marginTop: '2rem',
-          alignItems: 'center',
-          flexDirection: 'column'
+          alignItems: 'center'
         }}>
           <a href="tel:+359897331630" style={{ display: 'inline-block' }}>
             <img src="/phone.svg" alt="Phone" style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
@@ -412,23 +407,27 @@ const HomeDesktop = () => {
           </a>
         </div>
 
-        {/* Contact links - Desktop */}
+        {/* Contact links - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          bottom: '55px',
-          left: '150px',
-          fontSize: '1.5rem',
+          fontSize: '1.2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          bottom: '50px',
+          width: '90%',
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '2rem',
           color: '#FFFF',
           fontWeight: '300',
           fontFamily: 'Inria Sans',
-          fontStyle: 'italic', 
+          fontStyle: 'italic',
           zIndex: 100,
-          width: '300px',
-          textAlign: 'left',
           lineHeight: '0.9',
           textDecoration: 'underline'
         }}>
-          <p style={{ marginBottom: '3.6rem' }}>
+          <p style={{ marginBottom: '0' }}>
             <a 
               href="tel:+359897331630" 
               className="link" 
@@ -437,7 +436,7 @@ const HomeDesktop = () => {
               +359 897 331 630
             </a>
           </p>
-          <p style={{ marginBottom: '3.6rem' }}>
+          <p style={{ marginBottom: '0' }}>
             <a
               href="https://www.instagram.com/flowcoffeesofia"
               target="_blank"
@@ -448,28 +447,29 @@ const HomeDesktop = () => {
               @flowcoffeesofia
             </a>
           </p>
-          <p style={{ marginBottom: '2.3rem' }}>
+          <p style={{ marginBottom: '0' }}>
             <a href="https://www.facebook.com/flowcoffee" target="_blank" rel="noopener noreferrer" className="link" style={{ textDecoration: 'underline' }}>
               @flowcoffee
             </a>
           </p>
         </div>
 
-        {/* Map link - Desktop */}
+        {/* Map link - Mobile optimized */}
         <div style={{
           position: 'absolute',
+          fontSize: '1.2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          textAlign: 'center',
+          width: '90%',
+          whiteSpace: 'normal',
           bottom: '10px',
-          left: '271px',
-          fontSize: '1.4rem',
           color: '#FFFF',
           fontWeight: '300',
           fontFamily: 'Inria Sans',
-          fontStyle: 'italic', 
+          fontStyle: 'italic',
           zIndex: 100,
-          width: '300px',
-          textAlign: 'right',
           lineHeight: '0.9',
-          whiteSpace: 'nowrap',
           textDecoration: 'underline'
         }}>
           <a href="https://www.google.com/maps/place/FLOW+Coffee+and+Pastry/@42.7002383,23.3279669,18.72z/data=!4m15!1m8!3m7!1s0x40aa85656e11eb77:0xe866bef099588bd9!2sSofia+Center,+Budapeshta+Street+26,+1000+Sofia!3b1!8m2!3d42.7003233!4d23.3276759!16s%2Fg%2F11q2vy2_5l!3m5!1s0x40aa85ca12fd3843:0xf0fd2f34c3e8d20d!8m2!3d42.7002864!4d23.3276588!16s%2Fg%2F11rz4tdfs2?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="link" style={{textDecoration: 'underline' }}>
@@ -477,11 +477,11 @@ const HomeDesktop = () => {
           </a>
         </div>
 
-        {/* Copyright - Desktop */}
+        {/* Copyright - Mobile optimized */}
         <div style={{
           position: 'absolute',
           bottom: '-32px',
-          left: '89%',
+          left: '50%',
           transform: 'translateX(-50%)',
           fontWeight: '300',
           zIndex: 1000,
@@ -499,50 +499,4 @@ const HomeDesktop = () => {
   );
 };
 
-// Main Home component that switches between desktop and mobile
-const Home = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const isMobile = windowWidth <= 768;
-
-  return isMobile ? <HomeMobile /> : <HomeDesktop />;
-};
-
-function App() {
-  return (
-    <LanguageProvider>
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <StickyNavigation
-                logo={reactLogo} 
-                scrolledLogo={scrolledLogo}
-              />
-              <Home />
-            </>
-          } />
-          <Route path="/careers" element={
-            <>
-              <StickyNavigation
-                logo={scrolledLogo} 
-                scrolledLogo={scrolledLogo}
-                customLogoHeight="50px"
-              />
-              <Careers />
-            </>
-          } />
-        </Routes>
-      </Router>
-    </LanguageProvider>
-  );
-}
-
-export default App;
+export default HomeMobile;
