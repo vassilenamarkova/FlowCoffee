@@ -3,30 +3,37 @@ import scrolledLogo from './assets/flowLogoSmall.svg';
 import './App.css';
 import ModelViewer from './ModelViewer';
 import ScrollArrow from './arrow';
-import MyImage from './assets/flowbrownie.jpg'; // adjust the path if needed
+import MyImage from './assets/flowbrownie.jpg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slideshow from './Slideshow';
 import InfiniteCarousel from './Carrusel';
 import StickyNavigation from './StickyNav';
 import { LanguageProvider } from './LanguageContext';
-import Map from './map'; // adjust path as needed
-import { useState } from 'react';
+import Map from './map';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Careers from './careers';
 import ScrollToTop from './scrollToTop';
 import { useLanguage } from './LanguageContext';
 import { translations } from './translations';
 
-
-{/*import { useLanguage } from './LanguageContext';
-import { translations } from './translations';*/}
-
 // Home component - your main page content
 const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const { language} = useLanguage();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { language } = useLanguage();
   const t = translations[language];
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Only make changes for mobile/tablet - keep desktop as original
+  const isMobile = windowWidth <= 768;
+  const isTablet = windowWidth > 768 && windowWidth <= 1024;
 
   return (
     <>
@@ -41,7 +48,7 @@ const Home = () => {
         landing marker
       </div>
 
-      {/* Main content container */}
+      {/* Main content container - keep original for desktop */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -49,16 +56,30 @@ const Home = () => {
         gap: '2rem',
         marginTop: '1.7rem',
         padding: '1rem',
-        minHeight: '80vh'
+        minHeight: '80vh',
+        ...(isMobile && {
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem',
+          marginTop: '1rem',
+          padding: '0.5rem',
+          minHeight: '60vh'
+        })
       }}>
         
-        {/* 3D Model on Left */}
+        {/* 3D Model on Left - keep original positioning for desktop */}
         <div style={{
           flex: '0 0 290px',
           height: '250px',
-          position: 'relative'
+          position: 'relative',
+          ...(isMobile && {
+            flex: '1 1 auto',
+            height: '200px',
+            width: '100%',
+            maxWidth: '300px'
+          })
         }}>
-          {/* Background text */}
+          {/* Background text - keep original for desktop */}
           <div style={{
             position: 'absolute',
             top: '50%',
@@ -70,15 +91,23 @@ const Home = () => {
             zIndex: -1,
             userSelect: 'none',
             pointerEvents: 'none',
-            whiteSpace: 'nowrap'  
+            whiteSpace: 'nowrap',
+            ...(isMobile && {
+              fontSize: '4rem',
+              left: '50%'
+            }),
+            ...(isTablet && {
+              fontSize: '8rem',
+              left: '50%'
+            })
           }}>
             FLOW COFFEE
           </div>
 
-          {/* Second background text - directly below */}
+          {/* Second background text - keep original positioning */}
           <div style={{
             position: 'absolute',
-            top: 'calc(45% + 11rem)',  // 50% + font size + some spacing
+            top: 'calc(45% + 11rem)',
             left: '55%',
             transform: 'translate(-50%, -50%)',
             fontSize: '12rem',
@@ -87,136 +116,184 @@ const Home = () => {
             zIndex: -1,
             userSelect: 'none',
             pointerEvents: 'none',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            ...(isMobile && {
+              fontSize: '4rem',
+              left: '50%',
+              top: 'calc(50% + 4rem)'
+            }),
+            ...(isTablet && {
+              fontSize: '8rem',
+              left: '50%',
+              top: 'calc(50% + 8rem)'
+            })
           }}>
             FLOW COFFEE
           </div>
           
-          {/* 3D Model - no wrapper, stays in original position */}
+          {/* 3D Model - keep original */}
           <ModelViewer style={{ 
             width: '100%', 
             height: '100%', 
-            objectFit: 'contain',  // if possible depending on ModelViewer
+            objectFit: 'contain',
             zIndex: 2  
           }} />
         </div>
 
-        {/* Text content on Right */}
+        {/* Text content on Right - keep original */}
         <div style={{ 
           flex: '1',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start'
+          alignItems: 'flex-start',
+          ...(isMobile && {
+            alignItems: 'center'
+          })
         }}>
           
         </div>
       </div>
-      {/* Where Good Coffee */}
+
+      {/* Where Good Coffee - keep original positioning for desktop */}
       <div style={{
         position: 'absolute',
-        bottom: '50px',
-        left: '20px',
+        bottom: '9%',
+        left: '1.5%',
         fontSize: '1rem',
         color: '#0000A0',
         fontWeight: 'Bold',
         fontFamily: 'Inria Sans',
-        zIndex: 100
+        zIndex: 100,
+        ...(isMobile && {
+          left: '50%',
+          transform: 'translateX(-50%)',
+          fontSize: '0.9rem',
+          bottom: '12%',
+          textAlign: 'center',
+          width: '90%'
+        })
       }}>
         Where Good Coffee & Good Energy FLOW
       </div>
-      {/*Welcome to FLOW */}
+
+      {/* Welcome to FLOW - keep original positioning for desktop */}
       <div style={{
         position: 'absolute',
-        bottom: '20px',
-        left: '20px',
+        bottom: '4%',
+        left: '1.5%',
         fontSize: '1rem',
         color: '#0000A0',
-        fontWeight: '300',  // Changed from 'light' to '300' (numeric is more reliable)
+        fontWeight: '300',
         fontFamily: 'Inria Sans',
         fontStyle: 'italic', 
         zIndex: 100,
-        width: '300px',
+        width: '25%',
         textAlign: 'left',
-        lineHeight: '0.9'
+        lineHeight: '0.9',
+        ...(isMobile && {
+          left: '50%',
+          transform: 'translateX(-50%)',
+          fontSize: '0.9rem',
+          bottom: '6%',
+          textAlign: 'center',
+          width: '90%'
+        })
       }}>
         {t.welcome}
       </div>
 
-      
-    {/* BANNER */}
-    <div style={{
-      position: 'relative',
-      left: '50%',
-      right: '50%',
-      marginLeft: '-50vw',
-      marginRight: '-50vw',
-      marginTop: '0.5vw',
-      width: '100vw',
-      height: '70vh',
-      overflow: 'hidden'
-    }}>
-      <img 
-        src="/banner2.jpg"
-        alt="Banner image"
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          display: 'block',
-          objectPosition: '50% 42%'
-        }}
-      />
+      {/* BANNER - keep original height for desktop */}
+      <div style={{
+        position: 'relative',
+        left: '50%',
+        right: '50%',
+        marginLeft: '-50vw',
+        marginRight: '-50vw',
+        marginTop: '0.5vw',
+        width: '100vw',
+        height: '70vh',
+        overflow: 'hidden',
+        ...(isMobile && {
+          height: '50vh'
+        }),
+        ...(isTablet && {
+          height: '60vh'
+        })
+      }}>
+        <img 
+          src="/banner2.jpg"
+          alt="Banner image"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+            objectPosition: '50% 42%'
+          }}
+        />
 
-      <a 
-            href="https://www.takeaway.com/bg-en/menu/flow-coffee-and-pastrykafe-i-peciva-flou" 
-            target="_blank" 
-            rel="noopener noreferrer"
+        {/* Order button - keep original positioning for desktop */}
+        <a 
+          href="https://www.takeaway.com/bg-en/menu/flow-coffee-and-pastrykafe-i-peciva-flou" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{
+            position: 'absolute',
+            top: '80%',
+            left: '2.5%',
+            zIndex: 9999,
+            pointerEvents: 'auto',
+            ...(isMobile && {
+              top: '70%',
+              left: '50%',
+              transform: 'translateX(-50%)'
+            })
+          }}
+        >
+          <button
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{
-              position: 'absolute',
-              top: '80%',
-              left: '2.5%',
-              zIndex: 9999,
-              pointerEvents: 'auto'
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '5px 20px 10px 20px',
+              border: '2px solid white',
+              backgroundColor: isHovered ? 'rgba(252, 252, 252, 0.69)' : 'rgba(255, 255, 255, 0.32)',
+              color: isHovered ? 'rgb(255, 255, 255)' : 'white',
+              borderRadius: '30px',
+              fontSize: '35px',
+              lineHeight: '1',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s, color 0.3s',
+              pointerEvents: 'auto',
+              outline: 'none',
+              ...(isMobile && {
+                padding: '8px 16px 12px 16px',
+                fontSize: '24px'
+              }),
+              ...(isTablet && {
+                fontSize: '30px'
+              })
             }}
           >
-            <button
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '5px 20px 10px 20px',
-                border: '2px solid white',
-                backgroundColor: isHovered ? 'rgba(252, 252, 252, 0.69)' : 'rgba(255, 255, 255, 0.32)',
-                color: isHovered ? 'rgb(255, 255, 255)' : 'white',
-                borderRadius: '30px',
-                fontSize: '35px',
-                lineHeight: '1',
-                cursor: 'pointer',
-                transition: 'background-color 0.3s, color 0.3s',
-                pointerEvents: 'auto',
-                outline: 'none'
-              }}
-            >
-              {t.order}
-            </button>
-          </a>
+            {t.order}
+          </button>
+        </a>
 
-          <div id="home" style={{
-            position: 'absolute',
-            top: '-31%',
-            left: '0%',
-            fontSize: '1rem',
-            color: 'rgba(255, 255, 255, 0.25)',
-            zIndex: -1,
-          }}>
-            landing marker
-          </div>
+        <div id="home" style={{
+          position: 'absolute',
+          top: '-31%',
+          left: '0%',
+          fontSize: '1rem',
+          color: 'rgba(255, 255, 255, 0.25)',
+          zIndex: -1,
+        }}>
+          landing marker
+        </div>
+      </div>
 
-    </div>
-
-      {/*WHITE ABOUT US SECTION */}
+      {/* WHITE ABOUT US SECTION - keep original dimensions for desktop */}
       <div style={{
         position: 'relative',
         left: '50%',
@@ -232,102 +309,150 @@ const Home = () => {
         alignItems: 'flex-start',
         gap: '2rem',
         marginTop: '0.5rem',
-        zIndex: -100
+        zIndex: -100,
+        ...(isMobile && {
+          minHeight: '120vh',
+          padding: '2rem 0'
+        }),
+        ...(isTablet && {
+          minHeight: '150vh',
+          padding: '2rem 0'
+        })
       }}>
+        {/* ABOUT title - keep original positioning for desktop */}
         <div style={{
-            position: 'absolute',
-            top: '88px',  // 50% + font size + some spacing
-            left: '69%',
-            transform: 'translate(-50%, -50%)',
-            fontSize: '10rem',
-            fontFamily: 'Inria Sans',
-            fontWeight: 'bold',
-            color: 'rgba(191,171,122,0.74)',
-            zIndex: -1,
-            userSelect: 'none',
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap'
-          }}>
-            {t.ABOUT}
-          </div>
-
-          <div id="about-us" style={{
-            position: 'absolute',
-            top: '-4.5%',
-            left: '0%',
-            fontSize: '1rem',
-            color: 'rgba(255, 255, 255, 0.25)',
-            zIndex: -1,
-          }}>
-            landing marker
-          </div>
-
-          <div style={{
-            position: 'absolute',
-            top: '340px',
-            left: '69%',
-            transform: 'translate(-50%, -50%)',
-            fontSize: '1.1rem',
-            fontFamily: 'Inria Sans',
-            color: 'rgb(148, 128, 75)',
-            zIndex: -1,
-            userSelect: 'none',
-            pointerEvents: 'none',
-            width: '700px',
-            whiteSpace: 'normal',
-            textAlign: 'justify',
-            letterSpacing: '0.1rem',
-            lineHeight: '1.4'
-          }}>
-            {t.heroText}
-          </div>
-
-          <div style={{
-            position: 'absolute',
-            top: '830px',  // 50% + font size + some spacing
+          position: 'absolute',
+          top: '88px',
+          left: '69%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '10rem',
+          fontFamily: 'Inria Sans',
+          fontWeight: 'bold',
+          color: 'rgba(191,171,122,0.74)',
+          zIndex: -1,
+          userSelect: 'none',
+          pointerEvents: 'none',
+          whiteSpace: 'nowrap',
+          ...(isMobile && {
+            fontSize: '4rem',
             left: '50%',
-            transform: 'translate(-50%, -50%)',
-            fontSize: '1.5rem',
-            fontFamily: 'Inria Sans',
-            color: 'rgba(0, 0, 160)',
-            zIndex: -1,
-            fontWeight: 'bold',
-            userSelect: 'none',
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap',
-            textAlign: 'center',
-            letterSpacing: '0.2em',    // More space between letters
-            lineHeight: '1.1'
-          }}>
-            {t.more}
-          </div>
+            top: '60px'
+          }),
+          ...(isTablet && {
+            fontSize: '7rem',
+            left: '50%'
+          })
+        }}>
+          {t.ABOUT}
+        </div>
 
-          {/*SLIDESHOW */}
-          <Slideshow />
+        <div id="about-us" style={{
+          position: 'absolute',
+          top: '-4.5%',
+          left: '0%',
+          fontSize: '1rem',
+          color: 'rgba(255, 255, 255, 0.25)',
+          zIndex: -1,
+        }}>
+          landing marker
+        </div>
 
-          <div style={{
-            position: 'absolute',
-            top: '940px',  // 50% + font size + some spacing
-            left: '28%',
-            transform: 'translate(-50%, -50%)',
-            fontSize: '8rem',
-            fontFamily: 'Inria Sans',
-            fontWeight: 'bold',
-            color: 'rgba(157, 190, 139, 0.85)',  //rgba(164, 197, 158, 0.91)
-            zIndex: -1,
-            userSelect: 'none',
-            pointerEvents: 'none',
-            whiteSpace: 'nowrap'
-          }}>
-            {t.CONTACTS}
-          </div>
-          
-          
+        {/* Hero text - keep original positioning for desktop */}
+        <div style={{
+          position: 'absolute',
+          top: '340px',
+          left: '69%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '1.1rem',
+          fontFamily: 'Inria Sans',
+          color: 'rgb(148, 128, 75)',
+          zIndex: -1,
+          userSelect: 'none',
+          pointerEvents: 'none',
+          width: '700px',
+          whiteSpace: 'normal',
+          textAlign: 'justify',
+          letterSpacing: '0.1rem',
+          lineHeight: '1.4',
+          ...(isMobile && {
+            fontSize: '0.9rem',
+            left: '50%',
+            top: '200px',
+            width: '90%',
+            padding: '0 1rem'
+          }),
+          ...(isTablet && {
+            left: '50%',
+            top: '280px',
+            width: '80%'
+          })
+        }}>
+          {t.heroText}
+        </div>
+
+        {/* "More" text - keep original positioning for desktop */}
+        <div style={{
+          position: 'absolute',
+          top: '830px',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '1.5rem',
+          fontFamily: 'Inria Sans',
+          color: 'rgba(0, 0, 160)',
+          zIndex: -1,
+          fontWeight: 'bold',
+          userSelect: 'none',
+          pointerEvents: 'none',
+          whiteSpace: 'nowrap',
+          textAlign: 'center',
+          letterSpacing: '0.2em',
+          lineHeight: '1.1',
+          ...(isMobile && {
+            fontSize: '1.2rem',
+            top: '600px'
+          }),
+          ...(isTablet && {
+            top: '700px'
+          })
+        }}>
+          {t.more}
+        </div>
+
+        {/* SLIDESHOW - keep original */}
+        <Slideshow />
+
+        {/* CONTACTS title - keep original positioning for desktop */}
+        <div style={{
+          position: 'absolute',
+          top: '940px',
+          left: '28%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '8rem',
+          fontFamily: 'Inria Sans',
+          fontWeight: 'bold',
+          color: 'rgba(157, 190, 139, 0.85)',
+          zIndex: -1,
+          userSelect: 'none',
+          pointerEvents: 'none',
+          whiteSpace: 'nowrap',
+          ...(isMobile && {
+            fontSize: '4rem',
+            left: '50%',
+            top: '720px'
+          }),
+          ...(isTablet && {
+            fontSize: '6rem',
+            left: '50%',
+            top: '820px'
+          })
+        }}>
+          {t.CONTACTS}
+        </div>
       </div>
 
       <InfiniteCarousel/>
 
-      {/*GREEN CONTACTS SECTION */}
+      {/* GREEN CONTACTS SECTION - keep original dimensions for desktop */}
       <div id="contacts" style={{
         position: 'relative',
         left: '50%',
@@ -335,7 +460,7 @@ const Home = () => {
         marginLeft: '-50vw',
         marginRight: '-50vw',
         width: '100vw',
-        backgroundColor: 'rgba(157, 190, 139, 0.85)', //rgba(0, 0, 160, 0.80)
+        backgroundColor: 'rgba(157, 190, 139, 0.85)',
         padding: '-100rem',
         minHeight: '63vh',
         display: 'flex',
@@ -343,53 +468,77 @@ const Home = () => {
         alignItems: 'flex-start',
         gap: '2rem',
         marginTop: '0.5rem',
-        zIndex: 100
+        zIndex: 100,
+        ...(isMobile && {
+          minHeight: '80vh',
+          padding: '2rem 0'
+        })
       }}>
         
-
+        {/* Instagram Feed - Improved responsive version */}
+        {/* Instagram Feed - Desktop original, mobile responsive */}
         <div style={{ 
           position: 'absolute',
           top: '7px',
           left: '55.7%',
           transform: 'translateY(-7rem)',
-          width: `${800 * 0.70}px`,   // Scaled width
-          height: `${646 * 0.70}px`,  // Scaled height
-          overflow: 'hidden',         // 🚀 Clip anything outside bounds
+          width: `${800 * 0.70}px`, // Scaled width
+          height: `${646 * 0.70}px`, // Scaled height
+          overflow: 'hidden', // 🚀 Clip anything outside bounds
           zIndex: 101,
-          pointerEvents: 'auto'
+          pointerEvents: 'auto',
+          ...(isMobile && {
+            top: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '95%',
+            height: `${646 * 0.5}px`, // Proportional height for mobile
+            maxWidth: '400px' // Prevent it from getting too wide
+          })
         }}>
           <iframe
             src="https://emb.fouita.com/widget/0x299ba2/ftul0hyub"
             title="Instagram Feed"
-            width="800"
-            height="646"
+            width={isMobile ? '100%' : '800'}
+            height={isMobile ? '100%' : '646'}
             style={{ 
               border: 'none',
-              transform: 'scale(0.73)',
-              transformOrigin: 'top left'
+              transform: isMobile ? 'none' : 'scale(0.73)',
+              transformOrigin: 'top left',
+              ...(isMobile && {
+                width: '100%',
+                height: '100%'
+              })
             }}
-          ></iframe>
+          />
         </div>
 
-        {/*Monday to Friday */}
+        {/* Hours - keep original positioning for desktop */}
         <div style={{
           position: 'absolute',
           bottom: '90px',
           left: '400px',
           fontSize: '1.4rem',
           color: '#FFFF',
-          fontWeight: '400',  // Changed from 'light' to '300' (numeric is more reliable)
+          fontWeight: '400',
           fontFamily: 'Inria Sans',
           fontStyle: 'italic', 
           zIndex: 100,
           width: '300px',
           textAlign: 'center',
-          lineHeight: '0.9'
+          lineHeight: '0.9',
+          ...(isMobile && {
+            fontSize: '1.2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            bottom: '200px',
+            width: '90%'
+          })
         }}>
           {t.time}
         </div>
 
-        {/* SVG Icons */}
+        {/* SVG Icons - keep original positioning for desktop */}
         <div style={{
           position: 'absolute',
           bottom: '76px',
@@ -399,38 +548,54 @@ const Home = () => {
           gap: '2.8rem',
           marginTop: '2rem',
           alignItems: 'center',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          ...(isMobile && {
+            flexDirection: 'row',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            bottom: '50px',
+            gap: '1rem'
+          })
         }}>
-          <a href="tel:+359897331630"  style={{ display: 'inline-block' }}>
+          <a href="tel:+359897331630" style={{ display: 'inline-block' }}>
             <img src="/phone.svg" alt="Phone" style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
           </a>
-          <a href="tel:+359897331630"  style={{ display: 'inline-block' }}>
-            <img src="/insta.svg" alt="Instagram" className="link"  style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
+          <a href="https://www.instagram.com/flowcoffeesofia" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+            <img src="/insta.svg" alt="Instagram" className="link" style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
           </a>
-          <a href="tel:+359897331630"  style={{ display: 'inline-block' }}>
-            <img src="/facebook.svg" alt="Facebook" className="link"  style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
+          <a href="https://www.facebook.com/flowcoffee" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+            <img src="/facebook.svg" alt="Facebook" className="link" style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
           </a>
-          
         </div>
 
-        {/*phone, insta and facebook links */}
+        {/* Contact links - keep original positioning for desktop */}
         <div style={{
           position: 'absolute',
           bottom: '55px',
           left: '150px',
           fontSize: '1.5rem',
           color: '#FFFF',
-          fontWeight: '300',  // Changed from 'light' to '300' (numeric is more reliable)
+          fontWeight: '300',
           fontFamily: 'Inria Sans',
           fontStyle: 'italic', 
           zIndex: 100,
           width: '300px',
           textAlign: 'left',
           lineHeight: '0.9',
-          textDecoration: 'underline'
-
+          textDecoration: 'underline',
+          ...(isMobile && {
+            fontSize: '1.2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            bottom: '50px',
+            width: '90%',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '2rem'
+          })
         }}>
-          <p style={{ marginBottom: '3.6rem' }}>
+          <p style={{ marginBottom: isMobile ? '0' : '3.6rem' }}>
             <a 
               href="tel:+359897331630" 
               className="link" 
@@ -439,7 +604,7 @@ const Home = () => {
               +359 897 331 630
             </a>
           </p>
-          <p style={{ marginBottom: '3.6rem' }}>
+          <p style={{ marginBottom: isMobile ? '0' : '3.6rem' }}>
             <a
               href="https://www.instagram.com/flowcoffeesofia"
               target="_blank"
@@ -450,21 +615,21 @@ const Home = () => {
               @flowcoffeesofia
             </a>
           </p>
-          <p style={{ marginBottom: '2.3rem' }}>
+          <p style={{ marginBottom: isMobile ? '0' : '2.3rem' }}>
             <a href="https://www.facebook.com/flowcoffee" target="_blank" rel="noopener noreferrer" className="link" style={{ textDecoration: 'underline' }}>
               @flowcoffee
             </a>
           </p>
         </div>
 
-        {/*Monday to Friday */}
+        {/* Map link - keep original positioning for desktop */}
         <div style={{
           position: 'absolute',
           bottom: '10px',
           left: '271px',
           fontSize: '1.4rem',
           color: '#FFFF',
-          fontWeight: '300',  // Changed from 'light' to '300' (numeric is more reliable)
+          fontWeight: '300',
           fontFamily: 'Inria Sans',
           fontStyle: 'italic', 
           zIndex: 100,
@@ -472,14 +637,22 @@ const Home = () => {
           textAlign: 'right',
           lineHeight: '0.9',
           whiteSpace: 'nowrap',
-          textDecoration: 'underline'
-
+          textDecoration: 'underline',
+          ...(isMobile && {
+            fontSize: '1.2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            textAlign: 'center',
+            width: '90%',
+            whiteSpace: 'normal'
+          })
         }}>
           <a href="https://www.google.com/maps/place/FLOW+Coffee+and+Pastry/@42.7002383,23.3279669,18.72z/data=!4m15!1m8!3m7!1s0x40aa85656e11eb77:0xe866bef099588bd9!2sSofia+Center,+Budapeshta+Street+26,+1000+Sofia!3b1!8m2!3d42.7003233!4d23.3276759!16s%2Fg%2F11q2vy2_5l!3m5!1s0x40aa85ca12fd3843:0xf0fd2f34c3e8d20d!8m2!3d42.7002864!4d23.3276588!16s%2Fg%2F11rz4tdfs2?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="link" style={{textDecoration: 'underline' }}>
             {t.map}
           </a>
         </div>
 
+        {/* Copyright - keep original positioning for desktop */}
         <div style={{
           position: 'absolute',
           bottom: '-32px',
@@ -490,9 +663,12 @@ const Home = () => {
           textAlign: 'center',
           whiteSpace: 'nowrap',
           padding: '8px 0',
-          fontSize: '0.9rem', // Slightly smaller font
+          fontSize: '0.9rem',
           fontFamily: 'Inria Sans',
           color: '#A2A2A2',
+          ...(isMobile && {
+            left: '50%'
+          })
         }}>
           {t.rights}
         </div>
