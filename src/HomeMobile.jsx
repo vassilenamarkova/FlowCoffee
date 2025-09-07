@@ -11,12 +11,12 @@ const HomeMobile = () => {
   const t = translations[language];
 
   return (
-    <>
+    <div style={{ width: '100%', overflowX: 'hidden' }}>
       <div id="landing" style={{
         position: 'absolute',
         top: '0%',
         left: '0%',
-        fontSize: '1rem',
+        fontSize: '0.8rem',
         color: 'rgba(255, 255, 255, 0.25)',
         zIndex: -1,
       }}>
@@ -30,8 +30,10 @@ const HomeMobile = () => {
         alignItems: 'center',
         gap: '1rem',
         marginTop: '1rem',
-        padding: '0.5rem',
-        minHeight: '60vh'
+        padding: '0 1rem',
+        minHeight: '60vh',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         
         {/* 3D Model Section - Mobile optimized */}
@@ -48,7 +50,7 @@ const HomeMobile = () => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: '4rem',
+            fontSize: 'clamp(1.5rem, 8vw, 2.5rem)',
             fontWeight: 'bold',
             color: 'rgba(0, 0, 160, 0.25)',
             zIndex: -1,
@@ -62,10 +64,10 @@ const HomeMobile = () => {
           {/* Second background text - Mobile optimized */}
           <div style={{
             position: 'absolute',
-            top: 'calc(50% + 4rem)',
+            top: 'calc(50% + 2.5rem)',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: '4rem',
+            fontSize: 'clamp(1.5rem, 8vw, 2.5rem)',
             fontWeight: 'bold',
             color: 'rgba(0, 0, 160, 0.25)',
             zIndex: -1,
@@ -84,16 +86,6 @@ const HomeMobile = () => {
             zIndex: 2  
           }} />
         </div>
-
-        {/* Text content - Mobile optimized */}
-        <div style={{ 
-          flex: '1',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}>
-          
-        </div>
       </div>
 
       {/* Where Good Coffee - Mobile optimized */}
@@ -101,14 +93,17 @@ const HomeMobile = () => {
         position: 'absolute',
         left: '50%',
         transform: 'translateX(-50%)',
-        fontSize: '0.9rem',
+        fontSize: 'clamp(0.7rem, 4vw, 0.9rem)',
         bottom: '12%',
         textAlign: 'center',
         width: '90%',
+        maxWidth: '320px',
         color: '#0000A0',
         fontWeight: 'Bold',
         fontFamily: 'Inria Sans',
-        zIndex: 100
+        zIndex: 100,
+        padding: '0 0.5rem',
+        boxSizing: 'border-box'
       }}>
         Where Good Coffee & Good Energy FLOW
       </div>
@@ -118,15 +113,18 @@ const HomeMobile = () => {
         position: 'absolute',
         left: '50%',
         transform: 'translateX(-50%)',
-        fontSize: '0.9rem',
+        fontSize: 'clamp(0.7rem, 4vw, 0.9rem)',
         bottom: '6%',
         textAlign: 'center',
         width: '90%',
+        maxWidth: '320px',
         color: '#0000A0',
         fontWeight: '300',
         fontFamily: 'Inria Sans',
         fontStyle: 'italic',
-        zIndex: 100
+        zIndex: 100,
+        padding: '0 0.5rem',
+        boxSizing: 'border-box'
       }}>
         {t.welcome}
       </div>
@@ -134,14 +132,10 @@ const HomeMobile = () => {
       {/* BANNER - Mobile optimized */}
       <div style={{
         position: 'relative',
-        left: '50%',
-        right: '50%',
-        marginLeft: '-50vw',
-        marginRight: '-50vw',
-        marginTop: '0.5vw',
-        width: '100vw',
+        width: '100%',
         height: '50vh',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginTop: '0.5rem'
       }}>
         <img 
           src="/banner2.jpg"
@@ -176,12 +170,12 @@ const HomeMobile = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '8px 16px 12px 16px',
+              padding: '6px 12px 8px 12px',
               border: '2px solid white',
               backgroundColor: isHovered ? 'rgba(252, 252, 252, 0.69)' : 'rgba(255, 255, 255, 0.32)',
               color: isHovered ? 'rgb(255, 255, 255)' : 'white',
               borderRadius: '30px',
-              fontSize: '24px',
+              fontSize: 'clamp(1.2rem, 5vw, 1.5rem)',
               lineHeight: '1',
               cursor: 'pointer',
               transition: 'background-color 0.3s, color 0.3s',
@@ -197,7 +191,7 @@ const HomeMobile = () => {
           position: 'absolute',
           top: '-31%',
           left: '0%',
-          fontSize: '1rem',
+          fontSize: '0.8rem',
           color: 'rgba(255, 255, 255, 0.25)',
           zIndex: -1,
         }}>
@@ -208,11 +202,7 @@ const HomeMobile = () => {
       {/* WHITE ABOUT US SECTION - Mobile optimized */}
       <div style={{
         position: 'relative',
-        left: '50%',
-        right: '50%',
-        marginLeft: '-50vw',
-        marginRight: '-50vw',
-        width: '100vw',
+        width: '100%',
         backgroundColor: 'rgba(255, 255, 255, 0.54)',
         minHeight: '120vh',
         padding: '2rem 0',
@@ -221,12 +211,13 @@ const HomeMobile = () => {
         alignItems: 'flex-start',
         gap: '2rem',
         marginTop: '0.5rem',
-        zIndex: -100
+        zIndex: -100,
+        boxSizing: 'border-box'
       }}>
         {/* ABOUT title - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          fontSize: '4rem',
+          fontSize: 'clamp(2rem, 12vw, 3rem)',
           left: '50%',
           top: '60px',
           transform: 'translate(-50%, -50%)',
@@ -245,7 +236,7 @@ const HomeMobile = () => {
           position: 'absolute',
           top: '-4.5%',
           left: '0%',
-          fontSize: '1rem',
+          fontSize: '0.8rem',
           color: 'rgba(255, 255, 255, 0.25)',
           zIndex: -1,
         }}>
@@ -255,21 +246,22 @@ const HomeMobile = () => {
         {/* Hero text - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          fontSize: '0.9rem',
+          fontSize: 'clamp(0.7rem, 3.5vw, 0.9rem)',
           left: '50%',
-          top: '200px',
+          top: '140px',
           width: '90%',
+          maxWidth: '400px',
           padding: '0 1rem',
-          transform: 'translate(-50%, -50%)',
+          transform: 'translate(-50%, 0)',
           fontFamily: 'Inria Sans',
           color: 'rgb(148, 128, 75)',
-          zIndex: -1,
+          zIndex: 1,
           userSelect: 'none',
           pointerEvents: 'none',
-          whiteSpace: 'normal',
           textAlign: 'justify',
-          letterSpacing: '0.1rem',
-          lineHeight: '1.4'
+          letterSpacing: '0.05rem',
+          lineHeight: '1.4',
+          boxSizing: 'border-box'
         }}>
           {t.heroText}
         </div>
@@ -277,31 +269,34 @@ const HomeMobile = () => {
         {/* "More" text - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          fontSize: '1.2rem',
-          top: '600px',
+          fontSize: 'clamp(0.9rem, 4vw, 1.2rem)',
+          top: '420px',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           fontFamily: 'Inria Sans',
           color: 'rgba(0, 0, 160)',
-          zIndex: -1,
+          zIndex: 1,
           fontWeight: 'bold',
           userSelect: 'none',
           pointerEvents: 'none',
-          whiteSpace: 'nowrap',
           textAlign: 'center',
-          letterSpacing: '0.2em',
-          lineHeight: '1.1'
+          letterSpacing: '0.1em',
+          lineHeight: '1.1',
+          padding: '0 1rem',
+          boxSizing: 'border-box'
         }}>
           {t.more}
         </div>
 
         {/* SLIDESHOW */}
-        <Slideshow />
+        <div style={{ width: '100%', zIndex: 1 }}>
+          <Slideshow />
+        </div>
 
         {/* CONTACTS title - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          fontSize: '4rem',
+          fontSize: 'clamp(2rem, 12vw, 3rem)',
           left: '50%',
           top: '720px',
           transform: 'translate(-50%, -50%)',
@@ -317,15 +312,13 @@ const HomeMobile = () => {
         </div>
       </div>
 
-      <InfiniteCarousel/>
+      <div style={{ width: '100%', zIndex: 1 }}>
+        <InfiniteCarousel/>
+      </div>
 
       {/* GREEN CONTACTS SECTION - Mobile optimized */}
       <div id="contacts" style={{
         position: 'relative',
-        left: '50%',
-        right: '50%',
-        marginLeft: '-50vw',
-        marginRight: '-50vw',
         width: '100vw',
         backgroundColor: 'rgba(157, 190, 139, 0.85)',
         minHeight: '80vh',
@@ -335,7 +328,12 @@ const HomeMobile = () => {
         alignItems: 'flex-start',
         gap: '2rem',
         marginTop: '0.5rem',
-        zIndex: 100
+        zIndex: 100,
+        boxSizing: 'border-box',
+        left: '50%',
+        right: '50%',
+        marginLeft: '-50vw',
+        marginRight: '-50vw'
       }}>
         
         {/* Instagram Feed - Mobile optimized */}
@@ -345,8 +343,8 @@ const HomeMobile = () => {
           left: '50%',
           transform: 'translateX(-50%)',
           width: '95%',
-          height: `${646 * 0.5}px`,
-          maxWidth: '400px',
+          height: `${646 * 0.4}px`,
+          maxWidth: '350px',
           overflow: 'hidden',
           zIndex: 101,
           pointerEvents: 'auto'
@@ -367,18 +365,21 @@ const HomeMobile = () => {
         {/* Hours - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          fontSize: '1.2rem',
+          fontSize: 'clamp(0.9rem, 4vw, 1.2rem)',
           left: '50%',
           transform: 'translateX(-50%)',
           bottom: '200px',
           width: '90%',
+          maxWidth: '350px',
           color: '#FFFF',
           fontWeight: '400',
           fontFamily: 'Inria Sans',
           fontStyle: 'italic',
           zIndex: 100,
           textAlign: 'center',
-          lineHeight: '0.9'
+          lineHeight: '1.2',
+          padding: '0 1rem',
+          boxSizing: 'border-box'
         }}>
           {t.time}
         </div>
@@ -386,69 +387,70 @@ const HomeMobile = () => {
         {/* SVG Icons - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          flexDirection: 'row',
           left: '50%',
           transform: 'translateX(-50%)',
-          bottom: '50px',
-          gap: '1rem',
+          bottom: '140px',
           display: 'flex',
+          flexDirection: 'row',
+          gap: '1.5rem',
           justifyContent: 'center',
-          marginTop: '2rem',
           alignItems: 'center'
         }}>
           <a href="tel:+359897331630" style={{ display: 'inline-block' }}>
-            <img src="/phone.svg" alt="Phone" style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
+            <img src="/phone.svg" alt="Phone" style={{ width: '28px', height: '28px', cursor: 'pointer' }} />
           </a>
           <a href="https://www.instagram.com/flowcoffeesofia" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
-            <img src="/insta.svg" alt="Instagram" className="link" style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
+            <img src="/insta.svg" alt="Instagram" className="link" style={{ width: '28px', height: '28px', cursor: 'pointer' }} />
           </a>
           <a href="https://www.facebook.com/flowcoffee" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
-            <img src="/facebook.svg" alt="Facebook" className="link" style={{ width: '32px', height: '32px', cursor: 'pointer' }} />
+            <img src="/facebook.svg" alt="Facebook" className="link" style={{ width: '28px', height: '28px', cursor: 'pointer' }} />
           </a>
         </div>
 
         {/* Contact links - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          fontSize: '1.2rem',
+          fontSize: 'clamp(0.7rem, 3vw, 0.9rem)',
           left: '50%',
           transform: 'translateX(-50%)',
-          bottom: '50px',
-          width: '90%',
+          bottom: '80px',
+          width: '95%',
           textAlign: 'center',
           display: 'flex',
-          flexDirection: 'row',
-          gap: '2rem',
+          flexDirection: 'column',
+          gap: '0.5rem',
           color: '#FFFF',
           fontWeight: '300',
           fontFamily: 'Inria Sans',
           fontStyle: 'italic',
           zIndex: 100,
-          lineHeight: '0.9',
-          textDecoration: 'underline'
+          lineHeight: '1.2',
+          textDecoration: 'underline',
+          padding: '0 0.5rem',
+          boxSizing: 'border-box'
         }}>
-          <p style={{ marginBottom: '0' }}>
+          <p style={{ margin: '0' }}>
             <a 
               href="tel:+359897331630" 
               className="link" 
-              style={{ textDecoration: 'underline' }}
+              style={{ textDecoration: 'underline', color: '#FFFF' }}
             >
               +359 897 331 630
             </a>
           </p>
-          <p style={{ marginBottom: '0' }}>
+          <p style={{ margin: '0' }}>
             <a
               href="https://www.instagram.com/flowcoffeesofia"
               target="_blank"
               rel="noopener noreferrer"
               className="link"
-              style={{ textDecoration: 'underline' }}
+              style={{ textDecoration: 'underline', color: '#FFFF' }}
             >
               @flowcoffeesofia
             </a>
           </p>
-          <p style={{ marginBottom: '0' }}>
-            <a href="https://www.facebook.com/flowcoffee" target="_blank" rel="noopener noreferrer" className="link" style={{ textDecoration: 'underline' }}>
+          <p style={{ margin: '0' }}>
+            <a href="https://www.facebook.com/flowcoffee" target="_blank" rel="noopener noreferrer" className="link" style={{ textDecoration: 'underline', color: '#FFFF' }}>
               @flowcoffee
             </a>
           </p>
@@ -457,22 +459,23 @@ const HomeMobile = () => {
         {/* Map link - Mobile optimized */}
         <div style={{
           position: 'absolute',
-          fontSize: '1.2rem',
+          fontSize: 'clamp(0.7rem, 3vw, 0.9rem)',
           left: '50%',
           transform: 'translateX(-50%)',
           textAlign: 'center',
-          width: '90%',
-          whiteSpace: 'normal',
-          bottom: '10px',
+          width: '95%',
+          bottom: '20px',
           color: '#FFFF',
           fontWeight: '300',
           fontFamily: 'Inria Sans',
           fontStyle: 'italic',
           zIndex: 100,
-          lineHeight: '0.9',
-          textDecoration: 'underline'
+          lineHeight: '1.2',
+          textDecoration: 'underline',
+          padding: '0 0.5rem',
+          boxSizing: 'border-box'
         }}>
-          <a href="https://www.google.com/maps/place/FLOW+Coffee+and+Pastry/@42.7002383,23.3279669,18.72z/data=!4m15!1m8!3m7!1s0x40aa85656e11eb77:0xe866bef099588bd9!2sSofia+Center,+Budapeshta+Street+26,+1000+Sofia!3b1!8m2!3d42.7003233!4d23.3276759!16s%2Fg%2F11q2vy2_5l!3m5!1s0x40aa85ca12fd3843:0xf0fd2f34c3e8d20d!8m2!3d42.7002864!4d23.3276588!16s%2Fg%2F11rz4tdfs2?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="link" style={{textDecoration: 'underline' }}>
+          <a href="https://www.google.com/maps/place/FLOW+Coffee+and+Pastry/@42.7002383,23.3279669,18.72z/data=!4m15!1m8!3m7!1s0x40aa85656e11eb77:0xe866bef099588bd9!2sSofia+Center,+Budapeshta+Street+26,+1000+Sofia!3b1!8m2!3d42.7003233!4d23.3276759!16s%2Fg%2F11q2vy2_5l!3m5!1s0x40aa85ca12fd3843:0xf0fd2f34c3e8d20d!8m2!3d42.7002864!4d23.3276588!16s%2Fg%2F11rz4tdfs2?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="link" style={{textDecoration: 'underline', color: '#FFFF' }}>
             {t.map}
           </a>
         </div>
@@ -486,16 +489,17 @@ const HomeMobile = () => {
           fontWeight: '300',
           zIndex: 1000,
           textAlign: 'center',
-          whiteSpace: 'nowrap',
-          padding: '8px 0',
-          fontSize: '0.9rem',
+          padding: '8px 1rem',
+          fontSize: 'clamp(0.6rem, 3vw, 0.8rem)',
           fontFamily: 'Inria Sans',
-          color: '#A2A2A2'
+          color: '#A2A2A2',
+          width: '95%',
+          boxSizing: 'border-box'
         }}>
           {t.rights}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
