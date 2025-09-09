@@ -11,7 +11,7 @@ const HomeMobile = () => {
   const t = translations[language];
 
   return (
-    <div style={{ width: '100%', overflowX: 'hidden' }}>
+    <div style={{ width: '100%', overflowX: 'hidden', backgroundColor: 'white', minHeight: '100vh', zIndex: -3 }}>
       <div id="landing" style={{
         position: 'absolute',
         top: '0%',
@@ -29,7 +29,7 @@ const HomeMobile = () => {
         flexDirection: 'column',
         alignItems: 'center',
         gap: '1rem',
-        marginTop: '1rem',
+        marginTop: '6rem',
         padding: '0 1rem',
         minHeight: '60vh',
         width: '100%',
@@ -41,41 +41,41 @@ const HomeMobile = () => {
           flex: '1 1 auto',
           height: '200px',
           width: '100%',
-          maxWidth: '300px',
+          maxWidth: '250px',
           position: 'relative'
         }}>
           {/* Background text - Mobile optimized */}
           <div style={{
             position: 'absolute',
-            top: '50%',
+            top: '45%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: 'clamp(1.5rem, 8vw, 2.5rem)',
+            fontSize: 'clamp(8.5rem, 8vw, 2.5rem)',
             fontWeight: 'bold',
             color: 'rgba(0, 0, 160, 0.25)',
-            zIndex: -1,
+            zIndex: 0,
             userSelect: 'none',
             pointerEvents: 'none',
             whiteSpace: 'nowrap'
           }}>
-            FLOW COFFEE
+            FLOW
           </div>
 
           {/* Second background text - Mobile optimized */}
           <div style={{
             position: 'absolute',
-            top: 'calc(50% + 2.5rem)',
+            top: 'calc(50% + 6.5rem)',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: 'clamp(1.5rem, 8vw, 2.5rem)',
+            fontSize: 'clamp(6.0rem, 8vw, 2.5rem)',
             fontWeight: 'bold',
             color: 'rgba(0, 0, 160, 0.25)',
-            zIndex: -1,
+            zIndex: 0,
             userSelect: 'none',
             pointerEvents: 'none',
             whiteSpace: 'nowrap'
           }}>
-            FLOW COFFEE
+            COFFEE
           </div>
           
           {/* 3D Model */}
@@ -91,11 +91,11 @@ const HomeMobile = () => {
       {/* Where Good Coffee - Mobile optimized */}
       <div style={{
         position: 'absolute',
-        left: '50%',
+        left: '55%',
         transform: 'translateX(-50%)',
         fontSize: 'clamp(0.7rem, 4vw, 0.9rem)',
-        bottom: '12%',
-        textAlign: 'center',
+        bottom: '15%',
+        textAlign: 'right',
         width: '90%',
         maxWidth: '320px',
         color: '#0000A0',
@@ -111,11 +111,11 @@ const HomeMobile = () => {
       {/* Welcome to FLOW - Mobile optimized */}
       <div style={{
         position: 'absolute',
-        left: '50%',
+        left: '55%',
         transform: 'translateX(-50%)',
         fontSize: 'clamp(0.7rem, 4vw, 0.9rem)',
-        bottom: '6%',
-        textAlign: 'center',
+        bottom: '9%',
+        textAlign: 'right',
         width: '90%',
         maxWidth: '320px',
         color: '#0000A0',
@@ -135,7 +135,7 @@ const HomeMobile = () => {
         width: '100%',
         height: '50vh',
         overflow: 'hidden',
-        marginTop: '0.5rem'
+        marginTop: '3rem'
       }}>
         <img 
           src="/banner2.jpg"
@@ -156,7 +156,7 @@ const HomeMobile = () => {
           rel="noopener noreferrer"
           style={{
             position: 'absolute',
-            top: '70%',
+            top: '2%',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 9999,
@@ -170,7 +170,7 @@ const HomeMobile = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '6px 12px 8px 12px',
+              padding: '6px 270px 8px 12px',
               border: '2px solid white',
               backgroundColor: isHovered ? 'rgba(252, 252, 252, 0.69)' : 'rgba(255, 255, 255, 0.32)',
               color: isHovered ? 'rgb(255, 255, 255)' : 'white',
@@ -180,7 +180,8 @@ const HomeMobile = () => {
               cursor: 'pointer',
               transition: 'background-color 0.3s, color 0.3s',
               pointerEvents: 'auto',
-              outline: 'none'
+              outline: 'none',
+              whiteSpace: 'nowrap'
             }}
           >
             {t.order}

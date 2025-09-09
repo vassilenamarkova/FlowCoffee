@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slideshow from './Slideshow';
 import InfiniteCarousel from './Carrusel';
 import StickyNavigation from './StickyNav';
+//import MobileNavigation from './mobileNav';
 import { LanguageProvider } from './LanguageContext';
 import Map from './map';
 import { useState, useEffect } from 'react';
@@ -18,6 +19,7 @@ import ScrollToTop from './scrollToTop';
 import { useLanguage } from './LanguageContext';
 import { translations } from './translations';
 import HomeMobile from './HomeMobile';
+
 
 // Desktop Home component
 const HomeDesktop = () => {
